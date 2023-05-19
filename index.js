@@ -9,13 +9,21 @@ async function generatePdf(file, options, callback) {
     '--no-sandbox',
     '--disable-setuid-sandbox',
   ];
+  let params = {};
   if(options.args) {
+    for (let i = 0; i < options.args.length; i++) {
+      const elem = options.args[i].split("=");
+      if(elem.shift() === "executablePath")
+        params.executablePath = elem.join();
+        delete options.args[i];
+      }
+    }
     args = options.args;
     delete options.args;
   }
-
+  params.args = args;
   const browser = await puppeteer.launch({
-    args: args
+    ...params
   });
   const page = await browser.newPage();
 
