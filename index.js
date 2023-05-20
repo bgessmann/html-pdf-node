@@ -5,23 +5,24 @@ const inlineCss = require('inline-css')
 module.exports
 async function generatePdf(file, options, callback) {
   // we are using headless mode
-  let args = [
+
+  let params = {};
+
+  params.args = [
     '--no-sandbox',
     '--disable-setuid-sandbox',
   ];
-  let params = {};
+  
   if(options.args) {
-    for (let i = 0; i < options.args.length; i++) {
-      const elem = options.args[i].split("=");
-      if(elem.shift() === "executablePath")
-        params.executablePath = elem.join();
-        delete options.args[i];
-      }
-    }
-    args = options.args;
+    params.args = options.args;
     delete options.args;
   }
-  params.args = args;
+
+  if(options.executablePath) {
+    params.executablePath = options.executablePath;
+    delete options.executablePath;
+  }
+
   const browser = await puppeteer.launch({
     ...params
   });
@@ -55,23 +56,28 @@ async function generatePdf(file, options, callback) {
 
 async function generatePdfs(files, options, callback) {
   // we are using headless mode
-  let args = [
+  let params = {};
+
+  params.args = [
     '--no-sandbox',
     '--disable-setuid-sandbox',
   ];
-  let params = {};
+
   if(options.args) {
-    for (let i = 0; i < options.args.length; i++) {
-      const elem = options.args[i].split("=");
-      if(elem.shift() === "executablePath")
-        params.executablePath = elem.join();
-        delete options.args[i];
-      }
-    }
-    args = options.args;
+    params.args = options.args;
     delete options.args;
   }
-  params.args = args;
+  
+  if(options.args) {
+    params.args = options.args;
+    delete options.args;
+  }
+
+  if(options.executablePath) {
+    params.executablePath = options.executablePath;
+    delete options.executablePath;
+  }
+
   const browser = await puppeteer.launch({
     ...params
   });
