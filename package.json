@@ -15,7 +15,8 @@
     "bluebird": "^3.7.2",
     "handlebars": "^4.7.7",
     "inline-css": "^4.0.2",
-    "puppeteer": "^19.7.3"
+    "puppeteer": "^19.7.3",
+    "puppeteer-chromium-resolver": "^20.0.0",
   },
   "devDependencies": {
     "chai": "^4.2.0",
