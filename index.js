@@ -25,7 +25,7 @@ async function generatePdf(file, options, callback) {
   }
 
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: "new",
     ...params,
   }).catch(function(error) {
     console.log(error);
