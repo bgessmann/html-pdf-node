@@ -1,4 +1,3 @@
-const chromium = require('chromium');
 const puppeteer = require('puppeteer');
 var Promise = require('bluebird');
 const hb = require('handlebars')
@@ -20,8 +19,10 @@ async function generatePdf(file, options, callback) {
     params.args = options.args;
     delete options.args;
   }
-
-  params.executablePath = chromium.path
+  if(options.executablePath) {
+    params.executablePath = options.executablePath;
+    delete options.executablePath;
+  }
 
   const browser = await puppeteer.launch({
     headless: true,
