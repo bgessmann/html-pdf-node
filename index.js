@@ -22,7 +22,7 @@ async function generatePdf(file, options, callback) {
 
   params.executablePath = chromium.path
 
-  const browser = await stats.puppeteer.launch({
+  const browser = await puppeteer.launch({
     headless: true,
     ...params,
   }).catch(function(error) {
