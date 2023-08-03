@@ -118,4 +118,3 @@ async function generatePdfs(files, options, callback) {
 
 module.exports.generatePdf = generatePdf;
 module.exports.generatePdfs = generatePdfs;
-module.exports.checkChrome = checkChrome;
