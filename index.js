@@ -1,14 +1,9 @@
-const PCR = require("puppeteer-chromium-resolver");
+const chromium = require('chromium');
 var Promise = require('bluebird');
 const hb = require('handlebars')
 const inlineCss = require('inline-css')
 
-module.exports
-async function checkChrome(){
-  console.log("Check or Preload Chrome for pdf");
-  const stats = await PCR( {});
-  console.log("Chome path is: ", stats.executablePath);
-}
+
 
 async function generatePdf(file, options, callback) {
   // we are using headless mode
@@ -25,9 +20,7 @@ async function generatePdf(file, options, callback) {
     delete options.args;
   }
 
-  const stats = await PCR( {});
-
-  params.executablePath = stats.executablePath
+  params.executablePath = chromium.path
 
   const browser = await stats.puppeteer.launch({
     headless: true,
