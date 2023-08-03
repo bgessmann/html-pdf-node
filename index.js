@@ -1,4 +1,5 @@
 const chromium = require('chromium');
+const puppeteer = require('puppeteer');
 var Promise = require('bluebird');
 const hb = require('handlebars')
 const inlineCss = require('inline-css')
